@@ -13,9 +13,8 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {}
 
-
-  /* Se lanza una petición HTTP GET que devuelve un observable que no hace nada hasta que se suscribe
-  El observable recibo el JSON que viene del backend
+  /* Se lanza una petición HTTP GET que devuelve un observable, este no hace nada hasta que es suscrito
+  El observable recibe el JSON que viene del backend
   pipe nos permite encadenar operadores RxJS como map, filter...
   map se encarga de transfromar todo el JSON a la parte que nos interesa que es response._embedded.products */
   getProductList(): Observable<Product[]> {
@@ -26,14 +25,20 @@ export class ProductService {
 }
 
 // Como la respuesta del servidor en JSON es más compleja al usar Spring Data REST usamos la interfaz creada GetResponse
-/*   "_embedded": {
-    "products": [
-      { "id": 1, "name": "Camiseta", "price": 20 },
-      { "id": 2, "name": "Pantalón", "price": 35 }
-    ]
-  },
-  "_links": { ... },
-  "page": { ... }
+/*   {
+  "_embedded" : {
+    "products" : [ {
+      "sku" : "BOOK-TECH-1000",
+      "name" : "JavaScript - The Fun Parts",
+      "description" : "Learn JavaScript",
+      "unitPrice" : 19.99,
+      "imageUrl" : "assets/images/products/placeholder.png",
+      "active" : true,
+      "unitsInStock" : 100,
+      "dateCreated" : "2025-11-04T17:32:10.000+00:00",
+      "dateUpdated" : null,
+      "_links" : {
+        "self" : {.......
 } */
 
 // Si usasemos controladores normales y JPA sin Spring Data REST se la parte de _embedded desaparecería.
