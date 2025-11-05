@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent implements OnInit {
-
   products: Product[] = [];
 
   // DI
@@ -23,8 +22,8 @@ export class ProductListComponent implements OnInit {
 
   // Ejecutamos la función del servicio y nos suscribimos al Observable para activarlo y acceder a su información (JSON con los productos).
   listProducts() {
-    this._productService.getProductList().subscribe(data => {
+    this._productService.getProductList().subscribe((data) => {
       this.products = data;
-    })
+    });
   }
 }
