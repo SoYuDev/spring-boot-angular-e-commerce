@@ -1,0 +1,15 @@
+<div class="menu-sidebar-content js-scrollbar1">
+  <nav class="navbar-sidebar">
+    <ul class="list-unstyled navbar-list">
+      @for (productCategory of productCategories; track $index) {
+      <li>
+        <!-- Una vez el usuario clickea el link, routerLinkActive aplica estilos CSS -->
+        <!-- URL dinámica -->
+        <a routerLink="/category/{{ productCategory.id }}/{{productCategory.categoryName}}" routerLinkActive="active-link">
+          {{productCategory.categoryName}}
+        </a>
+      </li>
+      }
+    </ul>
+  </nav>
+</div>

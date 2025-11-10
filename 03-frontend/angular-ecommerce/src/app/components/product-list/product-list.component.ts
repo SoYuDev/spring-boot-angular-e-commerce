@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentCategoryId: number = 1;
+  currentCategoryName: string = '';
 
   // DI
   // ActivatedRoute nos permite acceder al route parameter que nos interesa (id)
@@ -37,15 +38,20 @@ export class ProductListComponent implements OnInit {
     if (hasCategoryId) {
       // Obtener el 'id' y convertirlo en un número usando el símbolo '+'
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
-    }
-    else {
+
+      // Obtiene el "name" param string
+      this.currentCategoryName = this.route.snapshot.paramMap.get('name')!;
+    } else {
       // Si no tenemos category id devolvemos la categoría 1 por defecto.
       this.currentCategoryId = 1;
+      this.currentCategoryName = 'Books'
     }
 
     // Obtener los productos específicos a partir del id obtenido
-    this._productService.getProductList(this.currentCategoryId).subscribe((data) => {
-      this.products = data;
-    });
+    this._productService
+      .getProductList(this.currentCategoryId)
+      .subscribe((data) => {
+        this.products = data;
+      });
   }
 }
