@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Product } from '../common/product';
+import { ProductCategory } from '../common/product-category';
 
 // Crea una instancia Singleton de la clase (de manera lazy, no eager loading) y podrá ser inyectada por cualquier clase que lo necesite.
 @Injectable({
@@ -10,6 +11,8 @@ import { Product } from '../common/product';
 export class ProductService {
   // URL donde consumiremos la API mediante peticiones HTTP.
   private baseUrl = 'http://localhost:8080/api/products';
+
+  private categoryUrl = 'http://localhost:8080/api/product-category';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -22,12 +25,19 @@ export class ProductService {
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
 
     return this.httpClient
-      .get<GetResponse>(searchUrl)
+      .get<GetResponseProduct>(searchUrl)
       .pipe(map((response) => response._embedded.products));
+  }
+
+  // Muy similar a getProductList pero para obtener las categorias de los productos.
+  getProductCategories(): Observable<ProductCategory[]> {
+    return this.httpClient
+      .get<GetResponseProductCategory>(this.categoryUrl)
+      .pipe(map((response) => response._embedded.productCategory));
   }
 }
 
-// Como la respuesta del servidor en JSON es más compleja al usar Spring Data REST usamos la interfaz creada GetResponse
+// Como la respuesta del servidor en JSON es más compleja al usar Spring Data REST usamos la interfaz creada GetResponseProduct
 /*   {
   "_embedded" : {
     "products" : [ {
@@ -46,8 +56,14 @@ export class ProductService {
 
 // Si usasemos controladores normales y JPA sin Spring Data REST se la parte de _embedded desaparecería.
 // Básicamente obtiene el JSON sin tener en cuentra el _embedded
-interface GetResponse {
+interface GetResponseProduct {
   _embedded: {
     products: Product[];
+  };
+}
+
+interface GetResponseProductCategory {
+  _embedded: {
+    productCategory: ProductCategory[];
   };
 }
