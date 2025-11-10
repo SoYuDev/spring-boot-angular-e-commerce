@@ -5,7 +5,7 @@
       <li>
         <!-- Una vez el usuario clickea el link, routerLinkActive aplica estilos CSS -->
         <!-- URL dinámica -->
-        <a routerLink="/category/{{ productCategory.id }}" routerLinkActive="active-link">
+        <a routerLink="/category/{{ productCategory.id }}/{{productCategory.categoryName}}" routerLinkActive="active-link">
           {{productCategory.categoryName}}
         </a>
       </li>
