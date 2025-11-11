@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+import { SearchComponent } from './components/search/search.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ProductListComponent, RouterOutlet, RouterLink, RouterLinkActive, ProductCategoryMenuComponent],
+  imports: [ProductListComponent, RouterOutlet, RouterLink, RouterLinkActive, ProductCategoryMenuComponent, SearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

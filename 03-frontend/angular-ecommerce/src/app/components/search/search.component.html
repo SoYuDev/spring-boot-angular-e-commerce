@@ -1,0 +1,10 @@
+<div class="form-header">
+    <!-- Usamos la Template reference variable (El texto que ha escrito el usuario en el input) -->
+    <input #myInput
+    class="au-input au-input-xl" type="text" name="search" placeholder="Search for products ..."
+    (keyup.enter)="doSearch(myInput.value)" />
+    
+    <button (click)="doSearch(myInput.value)" class="au-btn-submit" type="submit">
+        Search
+    </button>
+</div>

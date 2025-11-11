@@ -3,6 +3,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 
 // Cuando el path matchea crea una nueva instancia del componente 'ProductListComponent'.
 export const routes: Routes = [
+    {path: 'search/:keyword', component: ProductListComponent},
     //Pasamos el parámetro id de la URL (Path Variable) al componente
     {path: 'category/:id/:name', component: ProductListComponent},
     {path: 'category', component: ProductListComponent},
