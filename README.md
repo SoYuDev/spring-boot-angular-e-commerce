@@ -11,8 +11,7 @@ It demonstrates how to develop, integrate, and deploy a complete web system with
 - Shopping cart (add, update, remove items)  
 - Checkout workflow with Stripe payment integration  
 - RESTful API built with Spring Boot + JPA  
-- Angular front-end using RxJS and HttpClient  
-- Basic authentication and JWT security (optional module)  
+- Angular front-end using RxJS and HttpClient   
 - Pagination and responsive UI design  
 
 ---
